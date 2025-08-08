@@ -1,0 +1,38 @@
+client/dist
+server/dist
+node_modules
+client/node_modules
+.DS_Store
+.env
+*.log
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+*.env.development
+*.env.test
+client/package-lock.json
+server/package-lock.json
+*.env.production
+coverage
+server/node_modules
+
+# Ignore build directories
+client/.env
+server/.env 
+
+
+
+# Ignore build output
+
+# Ignore local development files
+# Ignore logs
+# Ignore dependency directories
+# Ignore environment variable files
+
+# Ignore IDE/editor specific files
+.idea
+
+.vscode
+*.sublime-workspace
+# Ignore OS generated files
