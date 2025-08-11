@@ -55,6 +55,7 @@ export default function Login() {
               <Input
                 id="email"
                 type="email"
+                disabled={isLoading ? true : false}
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +69,7 @@ export default function Login() {
               <Input
                 id="password"
                 type="password"
+                disabled={isLoading ? true : false} 
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

@@ -66,6 +66,7 @@ export default function Signup() {
                 id="name"
                 name="fullName"
                 type="text"
+                disabled={isLoading ? true : false}
                 placeholder="Enter your full name"
                 value={fullName}
                 onChange={(e) => setName(e.target.value)}
@@ -80,6 +81,7 @@ export default function Signup() {
                 id="email"
                 type="email"
                 name="email"
+                disabled={isLoading ? true : false}
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -94,6 +96,7 @@ export default function Signup() {
                 id="password"
                 type="password"
                 name="password"
+                disabled={isLoading ? true : false}
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

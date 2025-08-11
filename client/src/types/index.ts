@@ -28,7 +28,8 @@ export interface User {
   gender: string,
   research_interest: string,
   bio: string,
-  avatar_url: string
+  avatar_url: string,
+  plan: string;
 }
 
 export interface ForgotPasswordResponse {

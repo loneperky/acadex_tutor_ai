@@ -89,8 +89,12 @@ export const useBookmarks = (type?: BookmarkType) => {
 
   useEffect(() => {
     fetchBookmarks();
-    console.log(bookmarks)
   }, [fetchBookmarks]);
+
+  useEffect(() => {
+    console.log(bookmarks);
+  }, [bookmarks]);
+
 
   // ✅ Check if a specific item is bookmarked (calls GET /bookmarks/:type/:itemId)
   const checkIfBookmarked = useCallback(
@@ -117,7 +121,6 @@ export const useBookmarks = (type?: BookmarkType) => {
 
         // Optionally refresh the list
         fetchBookmarks();
-
         return res?.data?.bookmark;
       } catch (err: any) {
         console.error("Error adding bookmark:", err.message);

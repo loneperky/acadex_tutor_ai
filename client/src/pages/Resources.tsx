@@ -37,7 +37,6 @@ export default function Resources() {
     setYtResults([]); // Clear old results immediately
 
     try {
-
       const response = await axios.get(`/api/youtube/search?query=${searchTerm}`);
 
       if (response.data && response.data.items) {

@@ -29,7 +29,7 @@ export default function Home() {
             </div>
 
             <div className="text-center rounded text-gray-50 md:mt-40 mb-32 mt-20 max:">
-              <Link to="/login" className="bg-gradient-to-r from-green-500 to-green-900 rounded-full text-2xl py-4 px-12">Get Started</Link>
+              <Link to="/signup" className="bg-gradient-to-r from-green-500 to-green-900 rounded-full text-2xl py-4 px-12">Get Started</Link>
             </div>
           </div>
 
@@ -72,18 +72,18 @@ export default function Home() {
                 <button className="border-2 border-green-500 text-green-400  text-sm py-2 px-8 rounded-3xl bg-green-950 font-bold">Testimonials</button>
               </div>
               <h1 className="lg:text-7xl text-4xl lg:px-70">Our users stories and the Impact</h1>
-                 <div className="mt-12 px-4 lg:px-60">
-              <p className="text-center text-xl max-w-lg mx-auto">
-               Hear from top achievers, students, and educators who have transformed their learning experience with acadex.ai.
-              </p>
-            </div>
-            
+              <div className="mt-12 px-4 lg:px-60">
+                <p className="text-center text-xl max-w-lg mx-auto">
+                  Hear from top achievers, students, and educators who have transformed their learning experience with acadex.ai.
+                </p>
+              </div>
+
             </div>
             <TestimonialsSection />
           </div>
 
 
-     
+
           <div id="pricing">
             <div className="py-8 pb-16">
               <div className="py-16 max-lg:px-4 lg:px-32 bg-transparent rounded-3xl">
@@ -194,11 +194,11 @@ export default function Home() {
         </div>
       </div>
       <div className="flex animate-bounce  items-center justify-end text-center  ">
-        <Link to="#root">
+        <a href="">
           <div className="">
             <ArrowUp className="w-12 h-12 rounded-3xl text-green-700" />
           </div>
-        </Link>
+        </a>
       </div>
       <hr />
       <footer className="px-8">
@@ -219,7 +219,6 @@ export default function Home() {
           <p>newscholar@acadex.ai</p>
         </div>
       </footer>
-
     </>
   );
 }

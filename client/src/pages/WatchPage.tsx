@@ -34,7 +34,7 @@ export const WatchPage = () => {
     <div className="p-6">
       <h1 className="text-xl font-bold mb-4">Now Watching</h1>
       <div className="flex justify-between items-center p-2 border-b border-border">
-        <h2 className="text-lg font-semibold">Your Conversation</h2>
+        <h2 className="text-lg font-semibold">Your Video Resource</h2>
 
         {videoId && <BookmarkToggleButton itemId={videoId} type="video" />}
       </div>

@@ -1,7 +1,7 @@
 # Acadex
 
 **Learn smarter, not harder — with AI.**  
-Acadex is an AI-powered learning platform that delivers personalized lessons, instant feedback, and smart study recommendations. Built with **React.js**, **Node.js**, **Express**, and **PostgreSQL**, it provides an engaging, responsive, and secure environment for learners to achieve their goals faster.
+Acadex is an AI-powered learning platform that delivers personalized lessons, instant feedback, and smart study recommendations. Built with **React.js**, **Node.js**, **Express**, and **SupabaseSQL**, it provides an engaging, responsive, and secure environment for learners to achieve their goals faster.
 
 ---
 
@@ -18,9 +18,9 @@ Acadex is an AI-powered learning platform that delivers personalized lessons, in
 ## 🛠 Tech Stack
 - **Frontend:** React.js  
 - **Backend:** Node.js, Express.js  
-- **Database:** Supabase 
-- **AI Integration:** Custom AI models / APIs (e.g., OpenAI, TensorFlow, etc.)  
-- **Authentication:** JWT-based or cookie-session  
+- **Database:** SupabaseSQL 
+- **AI Integration:** Custom AI models / APIs (e.g., OpenAI, TensorFlow,Groq etc.)  
+- **Authentication:** JWT-based and cookie-session  
 
 ---
 

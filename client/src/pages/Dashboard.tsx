@@ -23,7 +23,7 @@ export default function Dashboard() {
   const { data, loading, error } = useTotalTime(user?.id || "");
 
   const totalTimeValue = loading
-    ? "Loading..."
+    ? 0
     : data
       ? `${(data.totalSeconds / 3600).toFixed(1)}h`
       : "0h";

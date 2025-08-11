@@ -139,7 +139,7 @@ export function AppSidebar() {
             {!isCollapsed && (
               <div className="flex flex-col text-sm">
                 <span className="font-medium">{user.full_name}</span>
-                <span className="text-xs text-muted-foreground truncate">{user.email}</span>
+                <span className="text-xs text-muted-foreground truncate">{user.plan}</span>
               </div>
             )}
           </button>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { BookmarkUnion } from "@/hooks/useBookmarks";
+import { useBookmarks } from "@/hooks/useBookmarks";
 import {
   Bookmark,
   Search,
@@ -18,7 +19,7 @@ import {
   Video,
   Link
 } from "lucide-react";
-import { useBookmarks } from "@/hooks/useBookmarks";
+
 import { BookmarkType } from "@/hooks/useBookmarks";
 
 export default function Bookmarks() {
@@ -28,13 +29,18 @@ export default function Bookmarks() {
   const navigate = useNavigate()
 
 
-  const { bookmarks, loading, error, removeBookmark } =
+  const { bookmarks, loading, error, removeBookmark, fetchBookmarks } =
     useBookmarks(selectedType ? (selectedType.toLowerCase() as BookmarkType) : undefined);
 
-  useEffect(() => {
-    console.log("Bookmarks loaded:", bookmarks);
-  }, [bookmarks])
 
+
+  useEffect(() => {
+    fetchBookmarks();
+  }, [selectedType]);
+
+  useEffect(() => {
+    fetchBookmarks()
+  }, [])
 
 
   const getBookmarkData = (bookmark: BookmarkUnion) => {
@@ -59,7 +65,7 @@ export default function Bookmarks() {
         title = bookmark.item?.title || "Untitled Video";
         content = "";
         date = bookmark.item?.created_at || bookmark.created_at;
-        url = bookmark.item?.url || "";
+        url = bookmark.item?.url || `https://www.youtube.com/watch?v=${bookmark.item_id}`;
         break;
 
       case "resource":
@@ -73,7 +79,7 @@ export default function Bookmarks() {
         title = bookmark.item?.content || "Untitled Question";
         content = bookmark.item?.answer || "";
         date = bookmark.item?.created_at || bookmark.created_at;
-        url = `/ask?q=${bookmark.item_id}`;
+        url = bookmark.item?.content || `https://www.youtube.com/watch?v=${bookmark.item_id}`;
         break;
     }
 
@@ -117,14 +123,18 @@ export default function Bookmarks() {
     }
   };
 
-
   const handleOpenBookmark = (url: string) => {
+    if (!url) {
+      toast.error("No URL found for this bookmark");
+      return;
+    }
     if (url.startsWith("http")) {
       window.open(url, "_blank");
     } else {
-      navigate(url); // this navigates internally
+      navigate(url);
     }
   };
+
 
 
   return (

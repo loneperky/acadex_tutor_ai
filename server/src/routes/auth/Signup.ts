@@ -50,7 +50,7 @@ router.post("/signup", async (req: Request, res: Response) => {
     // ✅ Insert into profiles
     const { error: profileError } = await supabase
       .from("profiles")
-      .insert([{ id: user.id, email, full_name: fullName }])
+      .insert([{ id: user.id, email, full_name: fullName, plan: "Free" }])
 
     if (profileError) {
       return res.status(400).json({ message: "Error inserting profile", error: profileError.message })
