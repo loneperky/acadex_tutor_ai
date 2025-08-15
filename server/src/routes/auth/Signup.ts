@@ -21,15 +21,14 @@ router.post("/signup", async (req: Request, res: Response) => {
     .select("email")
     .eq("email", email)
 
-  if (!existingUsers) {
-    console.log("continue", existingUsers)
-    return res.status(500).json({ error: "Database error", message: existingUsers })
-  }
-
-  if (existError) {
-    console.log("user already exist")
-    return res.status(500).json({ error: "Database error", message: existError })
-  }
+    if (existError) {
+      return res.status(500).json({ error: "Database error", message: existError.message });
+    }
+    
+    if (existingUsers.length > 0) {
+      return res.status(400).json({ error: "User already exists" });
+    }
+    
   try {
     // ✅ Create Supabase auth user
     const { data: authData, error: authError } = await supabase.auth.signUp({
@@ -39,7 +38,7 @@ router.post("/signup", async (req: Request, res: Response) => {
 
     if (authError) {
       console.log(authError)
-      return res.status(400).json({ error: "Signup failed", message: authError.message })
+      return res.status(500).json({ error: "Something went wrong" });
     }
 
     const user = authData.user
@@ -53,7 +52,7 @@ router.post("/signup", async (req: Request, res: Response) => {
       .insert([{ id: user.id, email, full_name: fullName, plan: "Free" }])
 
     if (profileError) {
-      return res.status(400).json({ message: "Error inserting profile", error: profileError.message })
+      return res.status(500).json({ error: "Something went wrong" });
     }
 
     // ✅ Issue JWT tokens
@@ -70,15 +69,15 @@ router.post("/signup", async (req: Request, res: Response) => {
     // ✅ Set cookies
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      maxAge: 1000 * 60 * 15, // 15 minutes
+      sameSite: "none",
+      secure: true,      
+      maxAge: 1000 * 60 * 60 * 24, // 15 minutes
     })
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      sameSite: "none",
+      secure: true,      
       maxAge: 1000 * 60 * 60 * 24, // 1 day
     })
 

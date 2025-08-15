@@ -3,6 +3,8 @@ import { useEffect, useRef } from 'react';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL = "http://localhost:5050";
 
 const useSessionTracker = (userId: string | null) => {
   const startRef = useRef<number | null>(null);
@@ -19,7 +21,7 @@ const useSessionTracker = (userId: string | null) => {
       
   console.log("Tracking session:", { userId, duration });
 
-      axios.post('http://localhost:5050/user/track-session', {
+      axios.post('/user/track-session', {
         userId,
         duration,
       }).catch((err) => {

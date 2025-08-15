@@ -8,6 +8,10 @@ type TimeData = {
   formatted: string;
 };
 
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL = "http://localhost:5050";
+
 // Optional: Helper to format seconds into hh:mm:ss
 const formatDuration = (totalSeconds: number): string => {
   const hours = Math.floor(totalSeconds / 3600);

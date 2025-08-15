@@ -17,33 +17,9 @@ import {
 
 
 export default function SettingsPage() {
-  const { user, logout } = useAuth()
+  const { user, logout, deleteAcc } = useAuth()
   return (
     <div className=" h-screen bg-background text-foreground">
-      {/* Sidebar */}
-      {/* <aside className="w-64 p-4 border-r border-border bg-card/60 backdrop-blur">
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold flex items-center gap-2">
-            <Settings className="h-5 w-5" />
-            Settings
-          </h2>
-        </div>
-        <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
-          <a href="#account" className="hover:text-foreground transition">
-            Account
-          </a>
-          <a href="#notifications" className="hover:text-foreground transition">
-            Notifications
-          </a>
-          <a href="#security" className="hover:text-foreground transition">
-            Security
-          </a>
-          <a href="#danger" className="hover:text-foreground transition text-red-600">
-            Danger Zone
-          </a>
-        </nav>
-      </aside> */}
-
       {/* Main Content */}
       <main className="flex-1 p-6 overflow-y-auto space-y-6">
         {/* Account */}
@@ -114,7 +90,7 @@ export default function SettingsPage() {
           </h3>
           <p className="text-sm text-muted-foreground">Delete your account permanently. This action cannot be undone.</p>
 
-          <button className="text-red-100 px-2 py-1 text-sm bg-red-900">Delete Account</button>
+          <button onClick={deleteAcc} className="text-red-100 px-2 py-1 text-sm bg-red-900 rounded-sm">Delete Account</button>
 
         </section>
 

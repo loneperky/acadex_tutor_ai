@@ -9,27 +9,25 @@ import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import GoogleSignInButton from "../components/GoogleButton";
 
-export default function Login() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { login } = useAuth(); // ✅ use real login function from context
+  const { forgotPassword } = useAuth(); // ✅ use real login function from context
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!email) {
       return toast.error("Please enter both email and password.");
     }
 
     try {
       setIsLoading(true);
-      const success = await login(email, password);
+      const success = await forgotPassword(email)
       if (success) {
-        toast.success("Login successful");
-        navigate("/ask");
+        toast.success("Verification email sent");
       } else {
         toast.error("Invalid credentials. Try again.");
       }
@@ -44,8 +42,8 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4 pt-20">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center space-y-4">
-          <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-          <CardDescription>Sign in to your AI Academic Tutor account</CardDescription>
+          <CardTitle className="text-2xl font-bold">Account Recovery</CardTitle>
+          <CardDescription>Enter your email address to find your accoutnt</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -64,20 +62,6 @@ export default function Login() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                disabled={isLoading ? true : false} 
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="bg-input border-border"
-              />
-            </div>
-
             <Button
               type="submit"
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
@@ -86,10 +70,9 @@ export default function Login() {
               {isLoading ? (
                 <Loader2 className="animate-spin h-5 w-5" />
               ) : (
-                "Sign In"
+                "Search"
               )}
             </Button>
-            <Link className="hover:text-green-500 text-right text-x text-gray-400" to={"/forgot-password"}><p>Forgot password?</p></Link>
 
             <div className="flex items-center gap-4 my-6">
               <hr className="flex-grow border-muted" />
@@ -102,9 +85,9 @@ export default function Login() {
 
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
-              Don&apos;t have an account?{" "}
-              <Link to="/signup" className="text-primary font-medium hover:underline">
-                Sign up
+             Already have an account?{" "}
+              <Link to="/login" className="text-primary font-medium hover:underline">
+                Login
               </Link>
             </p>
           </div>

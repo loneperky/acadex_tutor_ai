@@ -8,6 +8,10 @@ export interface ChatItem {
   created_at: string;
 }
 
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL = "http://localhost:5050";
+
 export function useChatHistory() {
   const [chatHistory, setChatHistory] = useState<ChatItem[]>([]);
   const [loading, setLoading] = useState(true);

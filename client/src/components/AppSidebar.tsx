@@ -40,7 +40,7 @@ const navigation = [
 
 
 export function AppSidebar() {
-  const { state } = useSidebar();
+  const { state,toggleSidebar } = useSidebar();
   const location = useLocation();
   const { user } = useAuth()
   const { chatHistory } = useChatHistory();
@@ -83,6 +83,7 @@ export function AppSidebar() {
                           onClick={() => {
                             startNewChat();
                             navigate(item.url);
+                            toggleSidebar()
                           }}
                         >
                           <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -91,6 +92,7 @@ export function AppSidebar() {
                       ) : (
                         <NavLink
                           to={item.url}
+                          onClick={toggleSidebar}
                           className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${getNavClasses(item.url)}`}
                         >
                           <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -113,7 +115,11 @@ export function AppSidebar() {
                     <SidebarMenuItem key={chat.id}>
                       <SidebarMenuButton
                         className="text-sm px-3 py-2 hover:bg-muted/50 w-full text-left truncate"
-                        onClick={() => navigate(`/chat/${chat.id}`)}
+                        onClick={() =>{
+                          navigate(`/chat/${chat.id}`);
+                          toggleSidebar()
+                        }
+                        }
                       >
                         {chat.title}
                       </SidebarMenuButton>
@@ -129,7 +135,11 @@ export function AppSidebar() {
         {/* User Info Section (Navigates to /settings) */}
         <div className="mt-auto p-2 border-t border-border">
           <button
-            onClick={() => navigate("/settings")}
+            onClick={() =>{
+              navigate("/settings");
+              toggleSidebar()
+            }
+            } 
             className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted/50 transition-all text-left"
           >
             <div className="h-8 w-8 bg-muted text-foreground flex items-center justify-center rounded-full font-semibold">

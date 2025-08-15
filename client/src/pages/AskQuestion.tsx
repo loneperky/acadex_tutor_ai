@@ -10,6 +10,10 @@ import { useChat } from "@/context/ChatContext";
 import { Message } from "@/types";
 import BookmarkToggleButton from "@/utils/bookmarkButton";
 
+axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+axios.defaults.baseURL = "http://localhost:5050";
+
 export default function AskQuestion() {
   const { chatId } = useParams(); // ✅ gets chatId from URL
   const { sendMessage, setMessages, messages, loadChatHistory } = useChat();
@@ -104,8 +108,9 @@ export default function AskQuestion() {
       {/* Chat Header */}
       <div className="flex justify-between items-center p-2 border-b border-border">
         <h2 className="text-lg font-semibold">Your Conversation</h2>
-
-        {chatId && <BookmarkToggleButton itemId={chatId} type="chat" />}
+        {chatId &&(
+          <BookmarkToggleButton itemId={chatId} type="chat" />
+        ) }
       </div>
 
       {/* Messages Area */}

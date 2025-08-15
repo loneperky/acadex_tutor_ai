@@ -118,9 +118,11 @@ export default function Signup() {
               <span className="text-muted-foreground text-sm">Or Continue</span>
               <hr className="flex-grow border-muted" />
             </div>
-
-            <GoogleSignInButton />
           </form>
+          <div className="pt-3">
+          <GoogleSignInButton />
+          </div>
+       
 
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">

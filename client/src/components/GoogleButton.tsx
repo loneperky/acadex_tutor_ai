@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button"; // Assuming you're using shadcn
 
 const GoogleSignInButton = () => {
   const handleGoogleSignIn = () => {
-    // Trigger Google OAuth flow here
-    console.log("Google Sign In clicked");
+    window.location.href = "http://localhost:5050/auth/google";
   };
-
+  
   return (
     <Button
       onClick={handleGoogleSignIn}

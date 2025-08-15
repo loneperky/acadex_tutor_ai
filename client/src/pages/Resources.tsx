@@ -20,15 +20,15 @@ import {
 import { resources } from "@/types";
 
 export default function Resources() {
-  axios.defaults.baseURL = "http://localhost:5050";
   axios.defaults.withCredentials = true;
+  axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+  // axios.defaults.baseURL = "http://localhost:5050";
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const [ytResults, setYtResults] = useState<any[]>([]);
   const [ytLoading, setYtLoading] = useState(false);
-  const [ytError, setYtError] = useState("");
-
 
   const handleYoutubeSearch = async () => {
     if (!searchTerm.trim()) return;

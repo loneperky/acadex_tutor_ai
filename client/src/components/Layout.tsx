@@ -10,7 +10,6 @@ export function Layout({ children }: LayoutProps) {
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
         <AppSidebar />
-
         <div className="flex-1 flex flex-col">
           {/* Top bar */}
           <header className="h-14 flex items-center justify-between px-4 border-b border-border bg-card/50 backdrop-blur">

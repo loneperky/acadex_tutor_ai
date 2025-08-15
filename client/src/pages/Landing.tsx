@@ -43,7 +43,7 @@ export default function Home() {
           <div className="pt-10" id="features">
 
             <div className=" " id="features">
-              <p className="bg-green-950  mt-20 bg-gradient-to-r from-green-500 to-green-900 rounded-lg w-fit px-8 py-2 ">Feature</p>
+              <p className="bg-green-950  mt-20 bg-gradient-to-r from-green-500 to-green-900 rounded-sm w-fit px-12 py-3 text-xl ">Feature</p>
               <h1 className="py-8 text-3xl font-bold lg:text-6xl lg:pr-70">Your go-to tool for Research, <span className="text-green-500">Learning</span> and Personalised content.</h1>
               <p className="text-xl max-lg:text-left lg:pr-12">Designed to give you the best. Every output is structured boost performance, logical reasoning, and conversation—boosting your academic performance.</p>
             </div>

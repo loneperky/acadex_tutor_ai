@@ -5,7 +5,8 @@ import { AuthContextType } from "../types";
 
 // Axios global setup
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:5050";
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL ="http://localhost:5050"
 
 // Create Auth Context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -27,49 +28,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   document.cookie.split(';').forEach(c => console.log(c.trim()));
 
   // Detect password reset flow
-  const isResetFlow = () => {
-    if (typeof window === "undefined") return false;
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    return path.includes("/reset-password") && hash.includes("type=recovery");
-  };
 
-  const isOnResetPage = window?.location?.pathname.includes('/reset-password');
-  const isRecoveryFlow = window?.location?.hash?.includes('type=recovery');
 
   useEffect(() => {
     const initialize = async () => {
-      if (isResetFlow()) {
-        console.log("Skipping auth init during password reset.");
+      const onResetPage = window.location.pathname.includes("/reset-password");
+      const recoveryFlow = window.location.hash.includes("type=recovery");
+  
+      if (onResetPage && recoveryFlow) {
+        console.log("Skipping session fetch during password reset flow.");
         setLoading(false);
         return;
       }
-
+  
       try {
-        // Try to get user (accessToken still valid)
-        const userRes = await axios.get("/user/profile");
-        setUser(userRes.data.user);
-        console.log("✅ Session restored via accessToken", userRes.data.user);
+        await axios.post("/auth/refresh-token");
+        const { data } = await axios.get("/user/profile");
+        setUser(data.user);
       } catch (err) {
-        console.warn("🔄 Access token expired, trying refresh...");
-
-        try {
-          await axios.post("/auth/refresh-token");
-          const userRes = await axios.get("/user/profile");
-          setUser(userRes.data.user);
-          console.log("✅ Session restored via refreshToken", userRes.data.user);
-        } catch (refreshError) {
-          console.error("❌ Refresh failed:", refreshError);
-          setUser(null); // Not authenticated
-        }
+        console.error("🚫 Session refresh failed:", err);
+        setUser(null);
       } finally {
         setLoading(false);
       }
     };
-
+  
     initialize();
   }, []);
-
+  
 
 
   // Fetch authenticated user, auto-refresh if unauthorized
@@ -154,6 +140,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setLoading(false);
     }
   };
+
 
   // Logout
   const logout = async () => {

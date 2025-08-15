@@ -18,6 +18,8 @@ import Quizzes from "./pages/Quizzes";
 import Resources from "./pages/Resources";
 import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import CompleteProfile from "./pages/completeProfile";
 import { ChatProvider } from "./context/ChatContext";
@@ -59,8 +61,9 @@ const App = () => {
               {/* Public Routes */}
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/signup" element={<Signup />} />
-
+              <Route path="/reset-password" element={<ResetPassword />} />
 
               {/* Protected Routes with Layout */}
               <Route

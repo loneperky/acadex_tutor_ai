@@ -6,7 +6,8 @@ import { useChatHistory } from "@/hooks/useChatHistory";
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || "http://localhost:5050";
+axios.defaults.baseURL =  "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL = "http://localhost:5050";
 
 export const useChat = () => {
   const context = useContext(ChatContext);
@@ -97,7 +98,9 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     await refresh()
   };
 
-
+  useEffect(()=>{
+    refresh()
+  },[])
 
   const loadChatHistory = async (id: string) => {
     try {

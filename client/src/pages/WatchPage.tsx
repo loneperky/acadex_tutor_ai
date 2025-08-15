@@ -4,6 +4,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { LoadingSpinner1 } from "@/utils/LoadingSpinner";
 import BookmarkToggleButton from "@/utils/bookmarkButton";
+
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL = "http://localhost:5050";
+
 export const WatchPage = () => {
   const { videoId } = useParams(); // get videoId from URL
   const [video, setVideo] = useState<any | null>(null);

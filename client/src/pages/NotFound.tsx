@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Home, AlertCircle } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const NotFound = () => {
   const location = useLocation();
+  const {user} = useAuth()
 
   useEffect(() => {
     console.error(
@@ -32,7 +34,7 @@ const NotFound = () => {
 
           <div className="space-y-3">
             <Button asChild className="w-full">
-              <Link to="/">
+              <Link to={user? "/dashboard" : "/login"}>
                 <Home className="h-4 w-4 mr-2" />
                 Go to Home
               </Link>

@@ -14,6 +14,8 @@ import { TrackUserTime } from './routes/userDetailsRoutes/trackTime'
 import { Bookmark } from './routes/userDetailsRoutes/bookmarks'
 import { MeRoute } from './routes/userDetailsRoutes/me'
 import { DeleteRoute } from './routes/auth/delete'
+import { GoogleAuth } from './routes/auth/google'
+
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 5050
@@ -22,7 +24,7 @@ const PORT = process.env.PORT || 5050
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-  origin: ["http://localhost:8080"],
+  origin: ["http://localhost:8080","https://acadex-tutor-ai.vercel.app"],
   credentials: true
 }))
 //Auth Routes
@@ -32,6 +34,7 @@ app.use("/auth", ForgotPasswordRoute)
 app.use("/auth", RefreshTokenRoute)
 app.use("/auth", LogOutRoute)
 app.use("/auth", DeleteRoute)
+app.use("/auth",GoogleAuth)
 app.use("/me", MeRoute)
 
 // User Route

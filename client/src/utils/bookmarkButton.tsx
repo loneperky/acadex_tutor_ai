@@ -6,6 +6,11 @@ import { useEffect, useState } from 'react';
 // You should define this type centrally (in /types or in useBookmarks.ts)
 export type BookmarkType = 'chat' | 'video' | 'resource' | 'question';
 
+// Axios global setup
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL ="http://localhost:5050"
+
 interface BookmarkToggleButtonProps {
   itemId: string;       // The unique ID of the item to bookmark (chat, video, etc.)
   type: BookmarkType;   // The type of the item

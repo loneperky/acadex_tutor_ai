@@ -4,7 +4,8 @@ import { toast } from "sonner";
 import { useChatHistory } from "./useChatHistory";
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:5050";
+axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+// axios.defaults.baseURL = "http://localhost:5050";
 
 export const useDeleteChat = () => {
   const [loading, setLoading] = useState(false);
