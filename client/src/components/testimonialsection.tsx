@@ -5,19 +5,19 @@ import TestimonialCard from '@/components/Testimonail';
 export default function TestimonialsSection() {
   const testimonials = [
     {
-      sub: "As a student, I struggled to express my story. Linkgenie helped me craft posts that felt truly mine—and got noticed.",
+      sub: "“This AI tutor explains topics in a way that finally makes sense! I went from failing my math tests to scoring above 80% in just two weeks.”",
       img: "https://randomuser.me/api/portraits/women/44.jpg",
       name: "Jane Lee",
       star: "⭐⭐⭐⭐⭐",
     },
     {
-      sub: "acadex made my personal brand come alive. I now get more engagement and freelance offers regularly.",
-      img: "https://randomuser.me/api/portraits/men/45.jpg",
+      sub: "“It’s like having the smartest study buddy who never gets tired of my questions.”",
+      img: "https://randomuser.me/api/portraits/men/1.jpg",
       name: "Alex Johnson",
       star: "⭐⭐⭐⭐",
     },
     {
-      sub: "I always found it hard to show my achievements. Linkgenie changed that, and now my posts generate real leads!",
+      sub: "“This app has completely changed how I study. Learning feels fun and stress-free now.”,",
       img: "https://randomuser.me/api/portraits/women/55.jpg",
       name: "Maria Gomez",
       star: "⭐⭐⭐⭐⭐",

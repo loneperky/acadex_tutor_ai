@@ -6,7 +6,7 @@ import { useChatHistory } from "@/hooks/useChatHistory";
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL =  "https://acadextutorai-production.up.railway.app";
+axios.defaults.baseURL =  "https://acadex-tutor-ai.onrender.com";
 // axios.defaults.baseURL = "http://localhost:5050";
 
 export const useChat = () => {

@@ -2,7 +2,8 @@ import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+axios.defaults.baseURL = "https://acadex-tutor-ai.onrender.com";
+
 // axios.defaults.baseURL = "http://localhost:5050";
 
 export type BookmarkType = "chat" | "video" | "resource" | "question";

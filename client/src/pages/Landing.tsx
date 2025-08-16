@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/Faqs";
 import HowItWorks from "@/components/HowItWorks";
 import { ArrowBigUp, ArrowUp, Facebook, Github, Linkedin, Twitter } from "lucide-react";
 import { features } from "@/data";
+
 export default function Home() {
   return (
     <>

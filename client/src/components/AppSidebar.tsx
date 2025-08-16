@@ -70,7 +70,7 @@ export function AppSidebar() {
         </div>
 
         {/* Navigation Links */}
-        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-muted">
+        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-muted bg-background">
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
@@ -142,7 +142,7 @@ export function AppSidebar() {
             } 
             className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted/50 transition-all text-left"
           >
-            <div className="h-8 w-8 bg-muted text-foreground flex items-center justify-center rounded-full font-semibold">
+            <div className="h-8 w-8 bg-green-500 font-bold text-gray-900 flex items-center justify-center rounded-full ">
 
               {getInitial(user.full_name)}
             </div>

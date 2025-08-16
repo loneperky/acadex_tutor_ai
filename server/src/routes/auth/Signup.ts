@@ -58,7 +58,7 @@ router.post("/signup", async (req: Request, res: Response) => {
     // ✅ Issue JWT tokens
     const accessToken = jwt.sign(
       { userId: user.id, email: user.email }, ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
+      { expiresIn: "1h" }
     )
 
     const refreshToken = jwt.sign(
@@ -71,7 +71,7 @@ router.post("/signup", async (req: Request, res: Response) => {
       httpOnly: true,
       sameSite: "none",
       secure: true,      
-      maxAge: 1000 * 60 * 60 * 24, // 15 minutes
+      maxAge: 1000 * 60 * 60
     })
 
     res.cookie("refreshToken", refreshToken, {

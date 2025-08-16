@@ -5,9 +5,8 @@ import { AuthContextType } from "../types";
 
 // Axios global setup
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
-// axios.defaults.baseURL ="http://localhost:5050"
-
+axios.defaults.baseURL = "https://acadex-tutor-ai.onrender.com";
+// axios.defaults.baseURL ="http://localhost:5050";
 // Create Auth Context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -40,9 +39,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setLoading(false);
         return;
       }
-  
       try {
-        await axios.post("/auth/refresh-token");
+        await axios.post("/auth/refresh-token",);
         const { data } = await axios.get("/user/profile");
         setUser(data.user);
       } catch (err) {
@@ -76,6 +74,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const { data } = await axios.post("/auth/signup", { fullName, email, password });
       setUser(data.user);
+      await fetchUser(); // Fetch user after signup
       return true;
     } catch (error: any) {
       console.error("Signup Error:", error.response?.data?.error || error.message);
@@ -117,6 +116,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         avatar_url,
       })
       setUser(data.user)
+      await fetchUser(); // Fetch user after profile update 
       return true
     } catch (error) {
       console.error("Error updating user profile:", error.response?.data || error.message);
@@ -132,6 +132,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const { data } = await axios.post("/auth/signin", { email, password });
       setUser(data.user);
+      await fetchUser(); // Fetch user after login
       return true;
     } catch (err: any) {
       console.error("Login Error:", err.response?.data?.error || err.message);

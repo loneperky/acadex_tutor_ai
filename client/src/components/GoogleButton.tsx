@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"; // Assuming you're using shadcn
 
 const GoogleSignInButton = () => {
   const handleGoogleSignIn = () => {
-    window.location.href = "http://localhost:5050/auth/google";
+    window.location.href = "https://acadex-tutor-ai.onrender.com/auth/login/google";
   };
   
   return (

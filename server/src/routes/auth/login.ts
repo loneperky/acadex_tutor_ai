@@ -30,7 +30,7 @@ router.post("/signin", async (req: Request, res: Response) => {
     const accessToken = jwt.sign(
       { userId: user.id, email: user.email },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: '15m' }
+      { expiresIn: '1h' }
     );
 
     const refreshToken = jwt.sign(
@@ -44,14 +44,14 @@ router.post("/signin", async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      maxAge: 1000 * 60 * 30
+      maxAge: 1000 * 60 * 60 
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      maxAge: 1000 * 60 * 60 * 24 * 1,
+      maxAge: 1000 * 60 * 60 * 24 ,
     });
 
     // Fetch user profile

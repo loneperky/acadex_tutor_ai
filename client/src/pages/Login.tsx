@@ -97,8 +97,11 @@ export default function Login() {
               <hr className="flex-grow border-muted" />
             </div>
 
-            <GoogleSignInButton />
+      
           </form>
+          <div className="pt-4">
+          <GoogleSignInButton />
+          </div>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">

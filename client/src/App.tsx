@@ -31,18 +31,6 @@ const queryClient = new QueryClient();
 const App = () => {
 
   const location = useLocation();
-
-  // const { loading } = useAuth();
-
-  // if (loading) {
-  //   return (
-  //     <div className="flex justify-center items-center h-screen text-gray-500 text-lg">
-  //       Loading session...
-  //     </div>
-  //   );
-  // }
-
-  // Show navbar only on public pages
   const showNavbar = ["/", "/login", "/signup"].includes(location.pathname);
 
   return (

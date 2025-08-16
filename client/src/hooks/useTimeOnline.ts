@@ -9,7 +9,7 @@ type TimeData = {
 };
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://acadextutorai-production.up.railway.app";
+axios.defaults.baseURL = "https://acadex-tutor-ai.onrender.com";
 // axios.defaults.baseURL = "http://localhost:5050";
 
 // Optional: Helper to format seconds into hh:mm:ss

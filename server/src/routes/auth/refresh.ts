@@ -22,13 +22,13 @@ router.post('/refresh-token', (req: Request, res: Response) => {
     const newAccessToken = jwt.sign(
       { userId: decoded.userId, email: decoded.email },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: '15m' } // Short-lived
+      { expiresIn: '1h' } // Short-lived
     );
     res.cookie('accessToken', newAccessToken, {
       httpOnly: true,
       secure: true, // set to true in production with HTTPS
       sameSite: 'none',
-      maxAge: 1000 * 60 * 15,
+      maxAge: 1000 * 60 * 60,
     });
 
     return res.status(200).json({ message: 'Access token refreshed' });

@@ -27,7 +27,7 @@ app.use(cors({
   origin: ["http://localhost:8080","https://acadex-tutor-ai.vercel.app"],
   credentials: true
 }))
-//Auth Routes
+//Auth Routesb
 app.use("/auth", SignupRoute)
 app.use("/auth", LoginRoute)
 app.use("/auth", ForgotPasswordRoute)

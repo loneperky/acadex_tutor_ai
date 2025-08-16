@@ -16,6 +16,8 @@ import { useChatHistory } from "@/hooks/useChatHistory";
 import { useMssgHistory } from "@/hooks/useMssgHistory";
 import { useTotalTime } from "@/hooks/useTimeOnline";
 import { useAuth } from "@/context/AuthContext";
+
+
 export default function Dashboard() {
   const { messages } = useMssgHistory()
   const { user } = useAuth()
@@ -43,7 +45,7 @@ export default function Dashboard() {
       color: "text-primary",
     },
     {
-      title: "Study Time (This Week)",
+      title: "Total Study Time",
       value: totalTimeValue,
       change: "+25%",
       icon: Clock,
@@ -179,7 +181,7 @@ export default function Dashboard() {
                 <span className="text-sm font-medium">Study Goal</span>
               </div>
               <p className="text-2xl font-bold text-primary">2.5h</p>
-              <p className="text-xs text-muted-foreground">1.2h completed</p>
+              <p className="text-xs text-muted-foreground">{totalTimeValue} Time  Completed</p>
               <Progress value={48} className="mt-2 h-1" />
             </div>
 
@@ -188,8 +190,8 @@ export default function Dashboard() {
                 <BookOpen className="h-4 w-4 text-orange-500" />
                 <span className="text-sm font-medium">Quiz Target</span>
               </div>
-              <p className="text-2xl font-bold text-orange-500">3</p>
-              <p className="text-xs text-muted-foreground">1 completed</p>
+              <p className="text-2xl font-bold text-orange-500">0</p>
+              <p className="text-xs text-muted-foreground">None</p>
               <Progress value={33} className="mt-2 h-1" />
             </div>
 

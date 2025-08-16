@@ -45,7 +45,7 @@ export default function SettingsPage() {
             <div>
               <button className="text-sm text-muted-foreground inline-flex items-center gap-2 p-2 rounded-lg">
                 <Phone className="h-4 w-5" />
-                <span className="text-base">{user.phone_number}</span>
+                <span className="text-base">{user.phone_number || "nill"}</span>
               </button>
               <p className="text-sm text-muted-foreground">
 
