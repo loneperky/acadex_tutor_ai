@@ -35,6 +35,7 @@ router.post('/send-message', authMiddleware, async (req: Request, res: Response)
             { role: 'user', content: message },
           ],
           temperature: 0.7,
+          
         },
         {
           headers: {
@@ -296,4 +297,4 @@ router.delete( "/delete-chat/:chatId", authMiddleware,  async (req: Request, res
   }
 );
 
-export { router as OpenAI };
+export { router as GroqAI };

@@ -1,10 +1,11 @@
 import { FormEvent, useState } from "react"
-
+import { useAuth } from "@/context/AuthContext"
 import { Menu, X } from "lucide-react"
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false)
-  const hanglehrefggle = () => {
+  const { user } = useAuth();
+  const handleMenuToggle = () => {
     setMenu(!menu)
   }
 
@@ -30,12 +31,21 @@ const Navbar = () => {
           <li className="hover:text-green-500" onClick={handleChange}><a href="#pricing">Pricing</a></li>
           <li className="hover:text-green-500" onClick={handleChange}><a href="#faqs">FAQs</a></li>
         </div>
-        <div className="flex gap-3 items-center max-lg:hidden  text-gray-200">
-          <a href="/login" className="text-sm font-bold text-green-50 hover:text-green-500">Log In</a>
+        <div >
+          <ul className="flex gap-3 items-center max-lg:hidden  text-gray-200">
+            <li>
+              {user ? (
+                <a href="/dashboard" className="text-sm font-bold text-green-50 hover:text-green-500">Dashboard</a>
+              ) : (
+                <a href="/login" className="text-sm font-bold text-green-50 hover:text-green-500">Log In</a>
+              )}            </li>
+            <li>
+              <a href="/signup" className="bg-green-500 font-bold text-gray-900 rounded-3xl p-2 px-6 hover:text-green-50">Register</a>
+            </li>
+          </ul>
 
-          <a href="/signup" className="bg-green-500 font-bold text-gray-900 rounded-3xl p-2 px-6 hover:text-green-50">Register</a>
         </div>
-        <button className="lg:hidden" onClick={hanglehrefggle}>
+        <button className="lg:hidden" onClick={handleMenuToggle}>
           {menu ? <X /> : <Menu />}
         </button>
       </div>
@@ -60,10 +70,38 @@ const Navbar = () => {
                 <a className="hover:text-green-500" href="#faqs">FAQs</a>
               </li>
             </ul>
-            <ul className="flex flex-col gap-3  text-left py-4 px-4 font-bold">
-              <a onClick={handleChange} className="w-full text-center bg-green-500 hover:bg-green-600 text-neutral-950 py-3 rounded-3xl" href="/signup">Register</a>
-              <a onClick={handleChange} className="hover:bg-gray-800 border border-green-500 rounded-full text-green-500 py-3 text-center" href="/login">Log In</a>
+            <ul className="flex flex-col gap-3 text-left py-4 px-4 font-bold">
+              <li>
+                <a
+                  onClick={handleChange}
+                  href="/signup"
+                  className="hover:bg-green-700 border  bg-green-500 border-green-500 rounded-full py-3 text-center block text-black"
+                >
+                  Register
+                </a>
+              </li>
+
+              <li>
+                {user ? (
+                  <a
+                    onClick={handleChange}
+                    href="/dashboard"
+                    className="hover:bg-gray-800 border border-green-500 rounded-full text-green-500 py-3 text-center block"
+                  >
+                    Dashboard
+                  </a>
+                ) : (
+                  <a
+                    onClick={handleChange}
+                    href="/login"
+                    className="hover:bg-gray-800 border border-green-500 rounded-full text-green-500 py-3 text-center block"
+                  >
+                    Log In
+                  </a>
+                )}
+              </li>
             </ul>
+
           </div>
         )}
       </nav>

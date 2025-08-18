@@ -64,7 +64,7 @@ export default function Dashboard() {
 
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="px-2 py-3 space-y-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>

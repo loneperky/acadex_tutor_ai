@@ -147,7 +147,10 @@ export default function Resources() {
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
               size="sm"
-              onClick={() => setSelectedCategory(null)}
+              onClick={() =>{
+                setSearchTerm("");
+                setSelectedCategory(null);
+              }}
             >
               All Subjects
             </Button>

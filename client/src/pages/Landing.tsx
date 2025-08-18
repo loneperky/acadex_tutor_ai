@@ -1,4 +1,3 @@
-import Button from "@/components/Button";
 import Feature from "@/components/feature";
 import { Link } from "react-router-dom";
 import TestimonialsSection from "@/components/testimonialsection";

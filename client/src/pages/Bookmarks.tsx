@@ -138,10 +138,10 @@ export default function Bookmarks() {
 
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Bookmarks</h1>
             <p className="text-muted-foreground">
@@ -156,17 +156,17 @@ export default function Bookmarks() {
 
         {/* Search and Filters */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
+          <div className="relative flex-1 min-w-0">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search bookmarks..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9"
+              className="pl-9 w-full"
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               variant={selectedType === null ? "default" : "outline"}
               size="sm"
@@ -189,7 +189,7 @@ export default function Bookmarks() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {types.map((type) => {
           const count = bookmarks.filter(b => b.type.toLowerCase() === type.toLowerCase()).length;
 
@@ -231,16 +231,16 @@ export default function Bookmarks() {
           return (
             <Card key={bookmark.id} className="hover:shadow-lg transition-all duration-200">
               <CardContent className="p-4">
-                <div className="flex items-start gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                   <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                       <div className="space-y-2 flex-1">
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-lg font-semibold text-foreground truncate">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="text-base sm:text-lg font-semibold text-foreground truncate">
                             {title}
                           </h3>
                           <Badge className={getTypeColor(bookmark.type)}>
@@ -257,7 +257,7 @@ export default function Bookmarks() {
                           {content}
                         </p>
 
-                        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground flex-wrap">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
                             <span>{new Date(date).toLocaleDateString()}</span>
@@ -265,9 +265,10 @@ export default function Bookmarks() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap flex-shrink-0 w-full sm:w-auto">
                         <Button
                           size="sm"
+                          className="whitespace-nowrap w-full sm:w-auto" 
                           variant="outline"
                           onClick={() => handleOpenBookmark(url)}
                         >
@@ -278,7 +279,7 @@ export default function Bookmarks() {
                           size="sm"
                           variant="outline"
                           onClick={() => handleRemoveBookmark(bookmark.type, bookmark.item_id)}
-                          className="text-destructive hover:text-destructive"
+                           className="whitespace-nowrap w-full sm:w-auto text-destructive hover:text-destructive"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>

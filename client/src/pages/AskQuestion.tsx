@@ -9,7 +9,7 @@ import { Send, Bot, Book, Mic, Paperclip, Copy } from "lucide-react";
 import { useChat } from "@/context/ChatContext";
 import { Message } from "@/types";
 import BookmarkToggleButton from "@/utils/bookmarkButton";
-
+import MessageRenderer from "@/components/MessageRender";
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "https://acadex-tutor-ai.onrender.com";
 // axios.defaults.baseURL = "http://localhost:5050";
@@ -106,7 +106,7 @@ export default function AskQuestion() {
   return (
     <div className="flex sticky flex-col max-w-4xl mx-auto h-full">
       {/* Chat Header */}
-      <div className="flex justify-between items-center p-2 border-b border-border">
+      <div className="flex  justify-between items-center p-2 border-b border-border">
         <h2 className="text-lg font-semibold">Your Conversation</h2>
         {chatId &&(
           <BookmarkToggleButton itemId={chatId} type="chat" />
@@ -118,17 +118,16 @@ export default function AskQuestion() {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-center"}`}
           >
-            <Card
-              className={`relative max-w-[80%] p-4 ${message.role === "user"
-                  ? "bg-gray-700 text-primary-foreground"
-                  : "bg-card"
+            <div
+              className={`relative  p-4 px-1
+                 ${message.role === "user"
+                  ? "bg-green-800 text-primary-foreground rounded-lg text-wrap max-w-[70%]"
+                  : " text-gray-100 border-opacity-50 border-gray-700 max-w-[100%]"
                 }`}
             >
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                {message.content}
-              </p>
+              <MessageRenderer content={message.content} />
 
               {message.role === "assistant" && (
                 <button
@@ -137,7 +136,7 @@ export default function AskQuestion() {
                     setCopiedId(message.id);
                     setTimeout(() => setCopiedId(null), 2000);
                   }}
-                  className="absolute bottom-2 right-2 text-muted-foreground transition"
+                  className="absolute mt-3 right-2 text-muted-foreground transition"
                 >
                   {copiedId === message.id ? (
                     <span className="text-xs">copied</span>
@@ -146,7 +145,7 @@ export default function AskQuestion() {
                   )}
                 </button>
               )}
-            </Card>
+            </div>
           </div>
         ))}
 
@@ -167,8 +166,8 @@ export default function AskQuestion() {
       </div>
 
       {/* Input Area */}
-      <div className="sticky bottom-0 p-4 border-t border-border bg-card/50 backdrop-blur">
-        <form onSubmit={handleSubmit} className="flex gap-2 relative">
+      <div className="sticky bottom-0 p-4 border-border  backdrop-blur w-full">
+        <form onSubmit={handleSubmit} className="flex gap-2 relative ">
           <div className="flex-1">
             <Textarea
               ref={textareaRef}
@@ -207,8 +206,7 @@ export default function AskQuestion() {
           </div>
         </form>
 
-        <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-          <Book className="h-3 w-3" />
+        <div className="text-center gap-2 mt-2 text-xs text-muted-foreground">
           <span>
             Pro tip: Be specific with your questions for better explanations!
           </span>
