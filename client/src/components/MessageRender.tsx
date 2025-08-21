@@ -8,81 +8,38 @@ export default function MessageRenderer({ content }: { content: string }) {
   return (
     <div className="space-y-3 leading-relaxed">
       {lines.map((line, i) => {
-        // === H1 Gradient Heading ===
-        if (line.endsWith("**")) {
+        // === H1 Gradient Heading (text ending with **) ===
+        if (/^\*{2}(.*)\*{2}$/.test(line)) {
           return (
-            <h1
-              key={i}
-              className="text-2xl font-bold"
-            >
-              {line.replace("**", "").trim()}
+            <h1 key={i} className="text-2xl font-bold text-green-200">
+              {line.replace(/^\*{2}|\*{2}$/g, "").trim()}
             </h1>
           );
         }
 
-        // === H2 Sub-heading (Green) ===
-        if (line.startsWith("* ")) {
+
+        // === H2 Sub-heading (starts with * ) ===
+        if (/^\* (.*)/.test(line)) {
           return (
             <h2 key={i} className="text-base font-semibold text-neutral-100">
-              {line.replace("* ", "").trim()}
+              {line.replace(/^\* /, "").trim()}
             </h2>
-          );
-        }
-        if (line.includes("+")) {
-          return (
-            <h2 key={i} className="text-base font-semibold text-neutral-100">
-              {line.replace("** ", "").trim()}
-            </h2>
-          );
-        }
-
-        // === H3 Smaller Heading (Purple) ===
-        if (line.startsWith("### ")) {
-          return (
-            <h3 key={i} className="text-lg font-semibold text-purple-400">
-              {line.replace("### ", "").trim()}
-            </h3>
-          );
-        }
-
-        // === Ordered List (+) ===
-        if (line.startsWith("+")) {
-          return (
-            <div key={i} className="ml-4 flex gap-2 text-black">
-              <span className=" font-bold">{listCounter++}.</span>
-              <span>{line.replace("+", "").trim()}</span>
-            </div>
-          );
-        } else {
-          // Reset counter if we encounter non-list
-          listCounter = 1;
-        }
-
-        // === Code Block ===
-        if (line.startsWith("+```") && line.endsWith("```")) {
-          return (
-            <pre
-              key={i}
-              className="bg-gray-800 text-gray-100 p-3 rounded-md text-sm overflow-x-auto"
-            >
-              <code>{line.replace("```", " ").trim()}</code>
-            </pre>
           );
         }
 
         // === Normal Paragraph ===
         if (line.trim() !== "") {
           return (
-            <div className="flex">
-              <p key={i} className="text-gray-200">
-                {line.trim()}
+            <div key={i} className="flex">
+              <p className="text-gray-100">
+                {line.replace(/\*+/g, "").trim()}
               </p>
-              <hr className="border-gray-900" />
+              <hr className="border-gray-500" />
             </div>
-
-
           );
         }
+
+
         return null;
       })}
     </div>

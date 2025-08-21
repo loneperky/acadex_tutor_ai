@@ -20,12 +20,11 @@ const features = [
 
 export default function BetaPage() {
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto py-6 px-2">
       <h1 className="text-3xl font-bold mb-8 flex items-center gap-2">
         <Lightbulb className="text-yellow-400 w-6 h-6" />
         Beta Features
       </h1>
-
       <div className="space-y-4">
         {features.map((feature, idx) => (
           <div

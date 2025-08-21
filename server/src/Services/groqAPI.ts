@@ -16,7 +16,7 @@ router.post('/send-message', authMiddleware, async (req: Request, res: Response)
   }
 
   let chatIdToUse = chat_id;
-  let generatedTitle = 'Untitled Chat';
+
 
   try {
     // 1. If no chat_id, generate a new chat

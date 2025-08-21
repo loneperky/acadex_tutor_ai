@@ -35,13 +35,19 @@ const Navbar = () => {
           <ul className="flex gap-3 items-center max-lg:hidden  text-gray-200">
             <li>
               {user ? (
-                <a href="/dashboard" className="text-sm font-bold text-green-50 hover:text-green-500">Dashboard</a>
+                <a href="/dashboard" className="bg-green-500 font-bold text-gray-900 rounded-3xl p-2 px-6 ">Dashboard</a>
               ) : (
-                <a href="/login" className="text-sm font-bold text-green-50 hover:text-green-500">Log In</a>
-              )}            </li>
-            <li>
-              <a href="/signup" className="bg-green-500 font-bold text-gray-900 rounded-3xl p-2 px-6 hover:text-green-50">Register</a>
+                <div className="flex items-center gap-2">
+                  <a href="/login" className="text-sm font-bold text-green-50 hover:text-green-500">Log In</a>
+                  <li>
+                    <a href="/signup" className="bg-green-500 font-bold text-gray-900 rounded-3xl p-2 px-6 ">Register</a>
+                  </li>
+                </div>
+
+
+              )}
             </li>
+
           </ul>
 
         </div>
@@ -71,33 +77,37 @@ const Navbar = () => {
               </li>
             </ul>
             <ul className="flex flex-col gap-3 text-left py-4 px-4 font-bold">
-              <li>
-                <a
-                  onClick={handleChange}
-                  href="/signup"
-                  className="hover:bg-green-700 border  bg-green-500 border-green-500 rounded-full py-3 text-center block text-black"
-                >
-                  Register
-                </a>
-              </li>
+
 
               <li>
                 {user ? (
                   <a
                     onClick={handleChange}
                     href="/dashboard"
-                    className="hover:bg-gray-800 border border-green-500 rounded-full text-green-500 py-3 text-center block"
+                    className="hover:bg-green-700 border  bg-green-500 border-green-500 rounded-full py-3 text-center block text-black"
                   >
                     Dashboard
                   </a>
                 ) : (
-                  <a
-                    onClick={handleChange}
-                    href="/login"
-                    className="hover:bg-gray-800 border border-green-500 rounded-full text-green-500 py-3 text-center block"
-                  >
-                    Log In
-                  </a>
+                  <div className="">
+                    <li>
+                      <a
+                        onClick={handleChange}
+                        href="/signup"
+                        className="hover:bg-green-700 border  bg-green-500 border-green-500 rounded-full py-3 text-center block text-black"
+                      >
+                        Register
+                      </a>
+                    </li>
+                    <a
+                      onClick={handleChange}
+                      href="/login"
+                      className="hover:bg-gray-800 border border-green-500 rounded-full text-green-500 py-3 text-center block mt-3"
+                    >
+                      Log In
+                    </a>
+                  </div>
+
                 )}
               </li>
             </ul>

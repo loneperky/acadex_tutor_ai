@@ -6,8 +6,12 @@ import { FaqSection } from "@/components/Faqs";
 import HowItWorks from "@/components/HowItWorks";
 import { ArrowBigUp, ArrowUp, Facebook, Github, Linkedin, Twitter } from "lucide-react";
 import { features } from "@/data";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Home() {
+
+  const { user } = useAuth()
+
   return (
     <>
       <div id="root" className="flex justify-center max-sm:px-4 items-center min-h-screen px-8  xl:px-30 scroll-smooth ">
@@ -29,7 +33,7 @@ export default function Home() {
             </div>
 
             <div className="text-center rounded text-gray-50 md:mt-40 mb-32 mt-20 max:">
-              <Link to="/signup" className="bg-gradient-to-r from-green-500 to-green-900 rounded-full text-2xl py-4 px-12">Get Started</Link>
+              <Link to={user ? "/dashboard" : "/signup"} className="bg-gradient-to-r from-green-500 to-green-900 rounded-full text-2xl py-4 px-12">{user ? "Learn A Topic" : "Get Started"}</Link>
             </div>
           </div>
 
@@ -189,8 +193,7 @@ export default function Home() {
             Tackle that academic problem that's troubling you with ease, and get ready to score perfectly every time, be it an assignment, research, or any academic task.
           </p>
 
-          <Link to="/ask-question"><button className="border-2 border-green-500 text-neutral-100  text-sm py-4 my-12 px-10 rounded-3xl bg-green-900 font-bold cursor-pointer">Ask a Question</button></Link>
-
+          <Link to={user ? "/ask" : "/login"}><button className="border-2 border-green-500 text-neutral-100  text-sm py-4 my-12 px-10 rounded-3xl bg-green-900 font-bold cursor-pointer">Ask a Question</button></Link>
         </div>
       </div>
       <div className="flex animate-bounce  items-center justify-end text-center  ">

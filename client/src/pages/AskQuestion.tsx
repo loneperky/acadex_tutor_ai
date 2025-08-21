@@ -104,26 +104,29 @@ export default function AskQuestion() {
   };
 
   return (
-    <div className="flex sticky flex-col max-w-4xl mx-auto h-full">
+    <div className="flex sticky flex-col max-w-4xl mx-auto h-screen">
       {/* Chat Header */}
-      <div className="flex  justify-between items-center p-2 border-b border-border">
-        <h2 className="text-lg font-semibold">Your Conversation</h2>
-        {chatId &&(
-          <BookmarkToggleButton itemId={chatId} type="chat" />
-        ) }
+      <div>
+      
+        {chatId && (
+          <div className="flex justify-between items-center p-2 border-b border-border">
+            <h2 className="text-lg font-semibold">Your Conversation</h2>
+            <BookmarkToggleButton itemId={chatId} type="chat" />
+          </div>
+        )}
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-green-700">
+      <div className="flex-1 overflow-y-auto p-2 space-y-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-600">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-center"}`}
           >
             <div
-              className={`relative  p-4 px-1
+              className={`relative   px-3
                  ${message.role === "user"
-                  ? "bg-green-800 text-primary-foreground rounded-lg text-wrap max-w-[70%]"
+                  ? "bg-green-800 text-primary-foreground rounded-3xl text-wrap max-w-[65%] py-1  mt-6"
                   : " text-gray-100 border-opacity-50 border-gray-700 max-w-[100%]"
                 }`}
             >
@@ -136,7 +139,7 @@ export default function AskQuestion() {
                     setCopiedId(message.id);
                     setTimeout(() => setCopiedId(null), 2000);
                   }}
-                  className="absolute mt-3 right-2 text-muted-foreground transition"
+                  className="absolute mt-3 left-2 text-muted-foreground transition"
                 >
                   {copiedId === message.id ? (
                     <span className="text-xs">copied</span>
@@ -166,9 +169,9 @@ export default function AskQuestion() {
       </div>
 
       {/* Input Area */}
-      <div className="sticky bottom-0 p-4 border-border  backdrop-blur w-full">
+      <div className="sticky bottom-0 p-4 border-border  backdrop-blur">
         <form onSubmit={handleSubmit} className="flex gap-2 relative ">
-          <div className="flex-1">
+          <div className="flex-1 items-center">
             <Textarea
               ref={textareaRef}
               value={currentQuestion}

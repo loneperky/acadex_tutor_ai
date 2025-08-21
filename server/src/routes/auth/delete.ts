@@ -6,25 +6,38 @@ const router = express.Router();
 
 // Use service role key to initialize admin client
 
-router.delete("/delete", authMiddleware, async (req: Request, res: Response) => {
-  const userId = (req as any).user?.userId;
+const supabaseAdmin = createClient(
+  process.env.SUPABASE_URL as string,
+  process.env.SUPABASE_SERVICE_ROLE_KEY as string
+);
 
-  if (!userId) {
-    return res.status(400).json({ error: "Missing user ID" });
+
+router.delete("/delete", authMiddleware, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user?.userId;
+
+    if (!userId) {
+      return res.status(400).json({ error: "Missing user ID" });
+    }
+    const { error } = await supabaseAdmin.auth.admin.deleteUser(userId);
+
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+
+    if (error) {
+      return res.status(500).json({ error: error.message || "Failed to delete user" });
+    }
+
+    return res.status(200).json({ message: "User deleted from auth successfully" });
+    
+  } catch {
+    return res.status(500).json({ error: "Failed to delete user" });
   }
 
   // Delete the user from Supabase Auth
-  const { error } = await supabase.auth.admin.deleteUser(userId);
 
   // Clear cookies regardless of success
-  res.clearCookie("accessToken");
-  res.clearCookie("refreshToken");
 
-  if (error) {
-    return res.status(500).json({ error: error.message || "Failed to delete user" });
-  }
-
-  return res.status(200).json({ message: "User deleted from auth successfully" });
 });
 
 export { router as DeleteRoute };

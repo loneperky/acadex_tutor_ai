@@ -31,7 +31,7 @@ import { useChat } from "@/context/ChatContext";
 const navigation = [
   { title: "Ask A Question", url: "/ask", icon: MessageSquare, action: "new-chat" },
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Quizzes", url: "/quizzes", icon: BookOpen },
+  // { title: "Quizzes", url: "/quizzes", icon: BookOpen },
   { title: "Bookmarks", url: "/bookmarks", icon: Bookmark },
   { title: "Resources", url: "/resources", icon: Library },
   { title: "Beta Features", url: "/beta", icon: LightbulbIcon },

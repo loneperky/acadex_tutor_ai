@@ -60,25 +60,17 @@ export default function SettingsPage() {
               </button>
 
             </div>
-          </div>
-        </section>
-
-        <section className="space-y-4">
-          <div id="security" className="">
-            <button className="text-sm text-muted-foreground inline-flex items-center gap-2 hover:bg-muted/50 p-2 rounded-lg">
-              <Lock className="h-5 w-5" />
-              <a href="change-password" className="text-sm text-muted-foreground">
-                Change Password
-              </a>
-            </button>
-          </div>
-
-          <button onClick={logout} className="text-sm text-muted-foreground inline-flex items-center gap-2 hover:bg-muted/50 p-2 rounded-lg">
+              <button onClick={logout} className="text-sm text-muted-foreground inline-flex items-center gap-2 hover:bg-muted/50 p-2 rounded-lg hover:bg-red-600 hover:text-red-400">
             <h3 className="text-lg font-semibold  flex items-center gap-2 text-muted-foreground">
               <LogOut className="h-4 w-4" />
               Log out
             </h3>
           </button>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+        
 
           <p className="text-sm text-muted-foreground">
             Log out of your account. You can log back in anytime.

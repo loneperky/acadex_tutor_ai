@@ -9,8 +9,8 @@ import { RefreshTokenRoute } from './routes/auth/refresh'
 import { LogOutRoute } from './routes/auth/logout'
 import { ProfileRoute } from './routes/userDetailsRoutes/profile'
 import cors from 'cors'
-import { GroqAI } from './controller/groq'
-import youtubeRoutes from './controller/googleAPI'
+import { GroqAI } from './Services/groqAPI'
+import youtubeRoutes from './Services/googleAPI'
 import { TrackUserTime } from './routes/userDetailsRoutes/trackTime'
 import { Bookmark } from './routes/userDetailsRoutes/bookmarks'
 import { MeRoute } from './routes/userDetailsRoutes/me'
@@ -50,15 +50,15 @@ const authLimiter = rateLimit({
 
 // Login route limiter
 const loginLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 5, // max 5 attempts per minute
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 15, // max 15 attempts per minute
   message: "Too many login attempts, please wait.",
 });
 
 // Signup route limiter
 const signupLimiter = rateLimit({
-  windowMs: 5 * 60 * 1000, // 5 minutes
-  max: 10, // max 10 signups per IP
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 20, // max 20 signups per IP
   message: "Too many signup attempts, please try later.",
 });
 

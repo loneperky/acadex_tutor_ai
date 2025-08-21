@@ -128,12 +128,16 @@ export default function Bookmarks() {
       toast.error("No URL found for this bookmark");
       return;
     }
+
     if (url.startsWith("http")) {
+      // External link → open in new tab
       window.open(url, "_blank");
     } else {
+      // Internal route → use React Router
       navigate(url);
     }
   };
+
 
 
 
@@ -268,7 +272,7 @@ export default function Bookmarks() {
                       <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap flex-shrink-0 w-full sm:w-auto">
                         <Button
                           size="sm"
-                          className="whitespace-nowrap w-full sm:w-auto" 
+                          className="whitespace-nowrap w-full sm:w-auto"
                           variant="outline"
                           onClick={() => handleOpenBookmark(url)}
                         >
@@ -279,7 +283,7 @@ export default function Bookmarks() {
                           size="sm"
                           variant="outline"
                           onClick={() => handleRemoveBookmark(bookmark.type, bookmark.item_id)}
-                           className="whitespace-nowrap w-full sm:w-auto text-destructive hover:text-destructive"
+                          className="whitespace-nowrap w-full sm:w-auto text-destructive hover:text-destructive"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
